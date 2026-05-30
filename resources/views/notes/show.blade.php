@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="hero-panel p-4 p-lg-5 mb-4">
-        <p class="section-label mb-2">Detail d'evaluation</p>
+        <p class="section-label mb-2">Détail d'évaluation</p>
         <h1 class="h2 mb-2">{{ $note->module }}</h1>
         <p class="text-muted mb-0">{{ $note->apprenant->nom_complet }} · {{ $note->apprenant->filiere->nom }}</p>
     </div>
@@ -11,9 +11,9 @@
                 <div class="d-grid gap-3">
                     <div><strong>Note :</strong> {{ number_format((float) $note->note, 2, ',', ' ') }} / 20</div>
                     <div><strong>Coefficient :</strong> {{ $note->coefficient }}</div>
-                    <div><strong>Moyenne generale :</strong> {{ number_format($stats['moyenne'], 2, ',', ' ') }}</div>
+                    <div><strong>Moyenne générale :</strong> {{ number_format($stats['moyenne'], 2, ',', ' ') }}</div>
                     <div><strong>Total coefficients :</strong> {{ $stats['coefficients'] }}</div>
-                    <div><strong>Decision :</strong> {{ $stats['decision'] }}</div>
+                    <div><strong>Décision :</strong> {{ $stats['decision'] }}</div>
                 </div>
             </div>
         </div>

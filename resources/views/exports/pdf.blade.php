@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>{{ $title }}</h1>
-    <div class="meta">CFTP-L2C · Genere le {{ now()->format('d/m/Y H:i') }}</div>
+    <div class="meta">CFTP-L2C · Généré le {{ now()->format('d/m/Y H:i') }}</div>
     @include($view, $data)
 </body>
 </html>

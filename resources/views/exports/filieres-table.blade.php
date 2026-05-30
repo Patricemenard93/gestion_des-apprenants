@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nom</th>
-            <th>Duree</th>
+            <th>Durée</th>
             <th>Description</th>
             <th>Nombre apprenants</th>
         </tr>

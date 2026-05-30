@@ -11,7 +11,7 @@ enum Gender: string
     {
         return match ($this) {
             self::Masculin => 'Masculin',
-            self::Feminin => 'Feminin',
+            self::Feminin => 'Féminin',
         };
     }
 }

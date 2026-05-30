@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
         <div>
-            <p class="section-label mb-1">Evaluation</p>
+            <p class="section-label mb-1">Évaluation</p>
             <h1 class="h2 mb-0">Gestion des notes</h1>
         </div>
         <div class="d-flex gap-2">
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4 d-flex align-items-end gap-2">
                 <button class="btn btn-primary w-100">Filtrer</button>
-                <a href="{{ route('notes.index') }}" class="btn btn-outline-secondary">Reinitialiser</a>
+                <a href="{{ route('notes.index') }}" class="btn btn-outline-secondary">Réinitialiser</a>
             </div>
         </form>
     </div>
@@ -37,7 +37,7 @@
                 <thead>
                     <tr>
                         <th>Apprenant</th>
-                        <th>Filiere</th>
+                        <th>Filière</th>
                         <th>Module</th>
                         <th>Note</th>
                         <th>Coefficient</th>
@@ -65,7 +65,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="6"><div class="empty-state">Aucune note trouvee.</div></td></tr>
+                        <tr><td colspan="6"><div class="empty-state">Aucune note trouvée.</div></td></tr>
                     @endforelse
                 </tbody>
             </table>

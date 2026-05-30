@@ -20,7 +20,7 @@
                 <div class="brand-mark mb-4">C</div>
                 <p class="section-label text-white-50 mb-2">Centre de Formation</p>
                 <h1 class="display-6 mb-3">Gestion professionnelle des apprenants</h1>
-                <p class="mb-0 text-white-50">Authentification securisee, suivi administratif, notes et statistiques dans une application Laravel structuree.</p>
+                <p class="mb-0 text-white-50">Authentification sécurisée, suivi administratif, notes et statistiques dans une application Laravel structurée.</p>
             </div>
             <div class="small text-white-50">
                 CFTP-L2C

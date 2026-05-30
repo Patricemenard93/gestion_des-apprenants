@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="hero-panel p-4 p-lg-5 mb-4">
-        <p class="section-label mb-2">Mise a jour</p>
+        <p class="section-label mb-2">Mise à jour</p>
         <h1 class="h2 mb-0">Modifier un apprenant</h1>
     </div>
     <div class="content-card p-4">

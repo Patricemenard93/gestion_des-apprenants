@@ -3,7 +3,7 @@
         <tr>
             <th>Apprenant</th>
             <th>Matricule</th>
-            <th>Filiere</th>
+            <th>Filière</th>
             <th>Module</th>
             <th>Note</th>
             <th>Coefficient</th>

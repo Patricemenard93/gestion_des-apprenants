@@ -2,13 +2,13 @@
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
         <div>
             <p class="section-label mb-1">Catalogue</p>
-            <h1 class="h2 mb-0">Filieres de formation</h1>
+            <h1 class="h2 mb-0">Filières de formation</h1>
         </div>
         <div class="d-flex gap-2">
             <a href="{{ route('exports.filieres.excel') }}" class="btn btn-outline-primary">Exporter Excel</a>
             <a href="{{ route('exports.filieres.pdf') }}" class="btn btn-outline-primary">Exporter PDF</a>
             @if(auth()->user()->isAdmin())
-                <a href="{{ route('filieres.create') }}" class="btn btn-primary">Nouvelle filiere</a>
+                <a href="{{ route('filieres.create') }}" class="btn btn-primary">Nouvelle filière</a>
             @endif
         </div>
     </div>
@@ -36,7 +36,7 @@
                                 <a href="{{ route('filieres.show', $filiere) }}" class="btn btn-sm btn-outline-primary">Voir</a>
                                 @if(auth()->user()->isAdmin())
                                     <a href="{{ route('filieres.edit', $filiere) }}" class="btn btn-sm btn-outline-secondary">Modifier</a>
-                                    <form method="POST" action="{{ route('filieres.destroy', $filiere) }}" class="d-inline" onsubmit="return confirm('Supprimer cette filiere ?')">
+                                    <form method="POST" action="{{ route('filieres.destroy', $filiere) }}" class="d-inline" onsubmit="return confirm('Supprimer cette filière ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-sm btn-outline-danger">Supprimer</button>
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="5"><div class="empty-state">Aucune filiere disponible.</div></td></tr>
+                        <tr><td colspan="5"><div class="empty-state">Aucune filière disponible.</div></td></tr>
                     @endforelse
                 </tbody>
             </table>

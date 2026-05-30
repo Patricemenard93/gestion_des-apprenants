@@ -22,7 +22,7 @@
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                 @foreach ([
                     'dashboard' => 'Tableau de bord',
-                    'filieres.index' => 'Filieres',
+                    'filieres.index' => 'Filières',
                     'apprenants.index' => 'Apprenants',
                     'notes.index' => 'Notes',
                 ] as $route => $label)
@@ -40,7 +40,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end p-0 overflow-hidden" style="width: 22rem;">
                         <div class="p-3 border-bottom">
-                            <div class="fw-semibold">Activite recente</div>
+                            <div class="fw-semibold">Activité récente</div>
                         </div>
                         @forelse($notifications as $notification)
                             <a href="{{ $notification->data['url'] ?? '#' }}" class="dropdown-item py-3">
@@ -62,7 +62,7 @@
                         <div class="dropdown-divider"></div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="dropdown-item">Deconnexion</button>
+                            <button type="submit" class="dropdown-item">Déconnexion</button>
                         </form>
                     </div>
                 </li>

@@ -47,26 +47,26 @@
                         <p class="home-eyebrow">Centre de formation CFTP-L2C</p>
                         <h1>CFTP-L2C Gestion des apprenants</h1>
                         <p class="home-lead">
-                            Une plateforme Laravel claire et professionnelle pour suivre les filieres,
+                            Une plateforme Laravel claire et professionnelle pour suivre les filières,
                             les dossiers des apprenants, les notes, les statistiques et les exports.
                         </p>
                         <div class="home-cta">
                             @if ($isAuthenticated)
-                                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg">Acceder au tableau de bord</a>
+                                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg">Accéder au tableau de bord</a>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-primary btn-lg">Acceder a l'espace de gestion</a>
+                                <a href="{{ route('login') }}" class="btn btn-primary btn-lg">Accéder à l'espace de gestion</a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="btn btn-outline-primary btn-lg">Creer un compte</a>
+                                    <a href="{{ route('register') }}" class="btn btn-outline-primary btn-lg">Créer un compte</a>
                                 @endif
                             @endif
                         </div>
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="home-preview" aria-label="Apercu de l'interface de gestion">
+                        <div class="home-preview" aria-label="Aperçu de l'interface de gestion">
                             <div class="home-preview-header">
                                 <span>Tableau de bord</span>
-                                <span class="home-status">Operationnel</span>
+                                <span class="home-status">Opérationnel</span>
                             </div>
                             <div class="home-preview-grid">
                                 <div>
@@ -74,7 +74,7 @@
                                     <strong>128</strong>
                                 </div>
                                 <div>
-                                    <span>Filieres</span>
+                                    <span>Filières</span>
                                     <strong>12</strong>
                                 </div>
                                 <div>
@@ -85,17 +85,17 @@
                             <div class="home-preview-table">
                                 <div class="home-preview-row home-preview-row-head">
                                     <span>Apprenant</span>
-                                    <span>Filiere</span>
-                                    <span>Decision</span>
+                                    <span>Filière</span>
+                                    <span>Décision</span>
                                 </div>
                                 <div class="home-preview-row">
                                     <span>Aminata Diallo</span>
-                                    <span>Developpement Web</span>
+                                    <span>Développement Web</span>
                                     <span class="home-badge success">Admis</span>
                                 </div>
                                 <div class="home-preview-row">
                                     <span>Moussa Sow</span>
-                                    <span>Genie Logiciel</span>
+                                    <span>Génie Logiciel</span>
                                     <span class="home-badge warning">Suivi</span>
                                 </div>
                                 <div class="home-preview-row">
@@ -114,36 +114,36 @@
             <div class="container">
                 <div class="home-section-header">
                     <p class="section-label mb-2">Modules principaux</p>
-                    <h2>Une organisation simple pour gerer le centre au quotidien</h2>
+                    <h2>Une organisation simple pour gérer le centre au quotidien</h2>
                 </div>
 
                 <div class="row g-3 g-lg-4">
                     <div class="col-md-6 col-xl-3">
                         <article class="home-feature">
                             <span class="home-feature-index">01</span>
-                            <h3>Filieres</h3>
-                            <p>Creation des parcours, durees, descriptions et consultation rapide des effectifs.</p>
+                            <h3>Filières</h3>
+                            <p>Création des parcours, durées, descriptions et consultation rapide des effectifs.</p>
                         </article>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <article class="home-feature">
                             <span class="home-feature-index">02</span>
                             <h3>Apprenants</h3>
-                            <p>Dossiers complets avec matricule, photo, contact, filiere et date d'inscription.</p>
+                            <p>Dossiers complets avec matricule, photo, contact, filière et date d'inscription.</p>
                         </article>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <article class="home-feature">
                             <span class="home-feature-index">03</span>
                             <h3>Notes</h3>
-                            <p>Saisie des modules, coefficients, moyennes et decisions de suivi pedagogique.</p>
+                            <p>Saisie des modules, coefficients, moyennes et décisions de suivi pédagogique.</p>
                         </article>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <article class="home-feature">
                             <span class="home-feature-index">04</span>
                             <h3>Exports</h3>
-                            <p>Generation de documents PDF et Excel pour faciliter le reporting administratif.</p>
+                            <p>Génération de documents PDF et Excel pour faciliter le reporting administratif.</p>
                         </article>
                     </div>
                 </div>

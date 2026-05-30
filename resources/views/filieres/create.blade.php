@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="hero-panel p-4 p-lg-5 mb-4">
-        <p class="section-label mb-2">Creation</p>
-        <h1 class="h2 mb-0">Ajouter une filiere</h1>
+        <p class="section-label mb-2">Création</p>
+        <h1 class="h2 mb-0">Ajouter une filière</h1>
     </div>
     <div class="content-card p-4">
         <form method="POST" action="{{ route('filieres.store') }}" class="row g-4">

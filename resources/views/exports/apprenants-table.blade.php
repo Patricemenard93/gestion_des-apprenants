@@ -5,8 +5,8 @@
             <th>Nom complet</th>
             <th>Sexe</th>
             <th>Email</th>
-            <th>Telephone</th>
-            <th>Filiere</th>
+            <th>Téléphone</th>
+            <th>Filière</th>
             <th>Date inscription</th>
         </tr>
     </thead>

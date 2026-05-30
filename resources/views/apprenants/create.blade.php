@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="hero-panel p-4 p-lg-5 mb-4">
-        <p class="section-label mb-2">Creation</p>
+        <p class="section-label mb-2">Création</p>
         <h1 class="h2 mb-0">Ajouter un apprenant</h1>
     </div>
     <div class="content-card p-4">

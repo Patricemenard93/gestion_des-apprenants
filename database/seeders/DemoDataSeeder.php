@@ -21,18 +21,18 @@ class DemoDataSeeder extends Seeder
 
         $filieres = collect([
             [
-                'nom' => 'Developpement Web',
-                'description' => 'Formation orientee applications web et architecture logicielle.',
+                'nom' => 'Développement Web',
+                'description' => 'Formation orientée applications web et architecture logicielle.',
                 'duree' => '12 mois',
             ],
             [
-                'nom' => 'Genie Logiciel',
-                'description' => 'Parcours axe conception, qualite et cycle de vie logiciel.',
+                'nom' => 'Génie Logiciel',
+                'description' => 'Parcours axé conception, qualité et cycle de vie logiciel.',
                 'duree' => '10 mois',
             ],
             [
                 'nom' => 'Informatique de Gestion',
-                'description' => 'Programme centre sur les outils numeriques et la gestion des donnees.',
+                'description' => 'Programme centré sur les outils numériques et la gestion des données.',
                 'duree' => '9 mois',
             ],
         ])->map(fn (array $data) => Filiere::query()->create($data));
@@ -46,7 +46,7 @@ class DemoDataSeeder extends Seeder
                 'date_naissance' => '2001-04-16',
                 'email' => 'aminata.diallo@example.test',
                 'telephone' => '+221700000001',
-                'adresse' => 'Dakar, Medina',
+                'adresse' => 'Dakar, Médina',
                 'photo' => 'photos/default-avatar.svg',
                 'date_inscription' => now()->subMonths(4)->toDateString(),
                 'filiere_id' => $filieres[0]->id,
@@ -59,7 +59,7 @@ class DemoDataSeeder extends Seeder
                 'date_naissance' => '2000-11-03',
                 'email' => 'moussa.sow@example.test',
                 'telephone' => '+221700000002',
-                'adresse' => 'Thies, Grand Standing',
+                'adresse' => 'Thiès, Grand Standing',
                 'photo' => 'photos/default-avatar.svg',
                 'date_inscription' => now()->subMonths(3)->toDateString(),
                 'filiere_id' => $filieres[1]->id,
@@ -84,8 +84,8 @@ class DemoDataSeeder extends Seeder
 
             foreach ([
                 ['module' => 'Algorithmique', 'note' => 14.50, 'coefficient' => 3],
-                ['module' => 'Base de donnees', 'note' => 12.00, 'coefficient' => 2],
-                ['module' => 'Developpement web', 'note' => 15.25, 'coefficient' => 4],
+                ['module' => 'Base de données', 'note' => 12.00, 'coefficient' => 2],
+                ['module' => 'Développement web', 'note' => 15.25, 'coefficient' => 4],
             ] as $note) {
                 Note::query()->create([
                     'apprenant_id' => $apprenant->id,

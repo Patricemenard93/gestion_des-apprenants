@@ -55,7 +55,7 @@ class ExportController extends Controller
     public function filieresPdf(): Response
     {
         return Pdf::loadView('exports.pdf', [
-            'title' => 'Liste des filieres',
+            'title' => 'Liste des filières',
             'view' => 'exports.filieres-table',
             'data' => ['filieres' => Filiere::query()->withCount('apprenants')->orderBy('nom')->get()],
         ])->download('filieres.pdf');

@@ -47,14 +47,14 @@ class NoteController extends Controller
 
         $this->notifyUsers(
             'Nouvelle note',
-            "Une note a ete ajoutee pour {$note->apprenant->nom_complet}.",
+            "Une note a été ajoutée pour {$note->apprenant->nom_complet}.",
             'success',
             route('notes.show', $note),
         );
 
         return redirect()
             ->route('notes.index')
-            ->with('success', 'La note a ete enregistree.');
+            ->with('success', 'La note a été enregistrée.');
     }
 
     public function show(Note $note, ApprenantStatsService $statsService): View
@@ -86,14 +86,14 @@ class NoteController extends Controller
 
         $this->notifyUsers(
             'Modification note',
-            "La note de {$note->apprenant->nom_complet} a ete modifiee.",
+            "La note de {$note->apprenant->nom_complet} a été modifiée.",
             'info',
             route('notes.show', $note),
         );
 
         return redirect()
             ->route('notes.show', $note)
-            ->with('success', 'La note a ete mise a jour.');
+            ->with('success', 'La note a été mise à jour.');
     }
 
     public function destroy(Note $note): RedirectResponse
@@ -103,6 +103,6 @@ class NoteController extends Controller
 
         return redirect()
             ->route('notes.index')
-            ->with('success', "La note de {$apprenantName} a ete supprimee.");
+            ->with('success', "La note de {$apprenantName} a été supprimée.");
     }
 }

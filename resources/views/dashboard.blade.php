@@ -4,7 +4,7 @@
             <div class="col-lg-7">
                 <p class="section-label mb-2">Tableau de bord</p>
                 <h1 class="display-6 mb-3">Pilotage du centre et suivi des performances</h1>
-                <p class="text-muted mb-4">Visualisez les effectifs, les resultats, l'evolution des inscriptions et les activites recentes sur une seule interface.</p>
+                <p class="text-muted mb-4">Visualisez les effectifs, les résultats, l'évolution des inscriptions et les activités récentes sur une seule interface.</p>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="{{ route('apprenants.index') }}" class="btn btn-primary">Voir les apprenants</a>
                     <a href="{{ route('notes.index') }}" class="btn btn-outline-primary">Analyser les notes</a>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-6">
                         <div class="metric-card">
-                            <div class="section-label mb-2">Filieres</div>
+                            <div class="section-label mb-2">Filières</div>
                             <div class="metric-value">{{ $stats['filieres'] }}</div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <p class="section-label mb-1">Statistiques</p>
-                        <h2 class="h4 mb-0">Apprenants par filiere</h2>
+                        <h2 class="h4 mb-0">Apprenants par filière</h2>
                     </div>
                 </div>
                 <canvas id="filieresChart"></canvas>
@@ -56,7 +56,7 @@
                 <div class="col-lg-6">
                     <div class="content-card p-4 chart-card">
                         <p class="section-label mb-1">Admission</p>
-                        <h2 class="h4 mb-3">Admis vs ajournes</h2>
+                        <h2 class="h4 mb-3">Admis vs ajournés</h2>
                         <canvas id="admissionsChart"></canvas>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
             <div class="content-card p-4 h-100">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <p class="section-label mb-1">Activite recente</p>
+                        <p class="section-label mb-1">Activité récente</p>
                         <h2 class="h4 mb-0">Derniers inscrits</h2>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     @empty
-                        <div class="empty-state">Aucun apprenant enregistre pour le moment.</div>
+                        <div class="empty-state">Aucun apprenant enregistré pour le moment.</div>
                     @endforelse
                 </div>
             </div>

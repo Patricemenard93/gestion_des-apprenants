@@ -51,14 +51,14 @@ class ApprenantController extends Controller
 
         $this->notifyUsers(
             'Nouvel apprenant',
-            "L'apprenant {$apprenant->nom_complet} a ete ajoute.",
+            "L'apprenant {$apprenant->nom_complet} a été ajouté.",
             'success',
             route('apprenants.show', $apprenant),
         );
 
         return redirect()
             ->route('apprenants.index')
-            ->with('success', 'L apprenant a ete enregistre avec succes.');
+            ->with('success', "L'apprenant a été enregistré avec succès.");
     }
 
     public function show(Apprenant $apprenant, ApprenantStatsService $statsService): View
@@ -99,7 +99,7 @@ class ApprenantController extends Controller
 
         return redirect()
             ->route('apprenants.show', $apprenant)
-            ->with('success', 'Les informations de l apprenant ont ete mises a jour.');
+            ->with('success', "Les informations de l'apprenant ont été mises à jour.");
     }
 
     public function destroy(Apprenant $apprenant): RedirectResponse
@@ -114,12 +114,12 @@ class ApprenantController extends Controller
 
         $this->notifyUsers(
             'Suppression apprenant',
-            "L'apprenant {$name} a ete supprime.",
+            "L'apprenant {$name} a été supprimé.",
             'warning',
         );
 
         return redirect()
             ->route('apprenants.index')
-            ->with('success', 'L apprenant a ete supprime.');
+            ->with('success', "L'apprenant a été supprimé.");
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="hero-panel p-4 p-lg-5 mb-4">
-        <p class="section-label mb-2">Mise a jour</p>
-        <h1 class="h2 mb-0">Modifier la filiere</h1>
+        <p class="section-label mb-2">Mise à jour</p>
+        <h1 class="h2 mb-0">Modifier la filière</h1>
     </div>
     <div class="content-card p-4">
         <form method="POST" action="{{ route('filieres.update', $filiere) }}" class="row g-4">

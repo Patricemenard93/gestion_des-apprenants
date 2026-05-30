@@ -20,9 +20,9 @@
                 <input class="form-control" id="search" name="search" type="text" value="{{ $filters['search'] }}" placeholder="Nom, prenom ou matricule">
             </div>
             <div class="col-md-4">
-                <label class="form-label" for="filiere">Filiere</label>
+                <label class="form-label" for="filiere">Filière</label>
                 <select class="form-select" id="filiere" name="filiere">
-                    <option value="">Toutes les filieres</option>
+                    <option value="">Toutes les filières</option>
                     @foreach($filieres as $filiere)
                         <option value="{{ $filiere->id }}" @selected((string) $filters['filiere'] === (string) $filiere->id)>{{ $filiere->nom }}</option>
                     @endforeach
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-3 d-flex align-items-end gap-2">
                 <button class="btn btn-primary w-100">Filtrer</button>
-                <a href="{{ route('apprenants.index') }}" class="btn btn-outline-secondary">Reinitialiser</a>
+                <a href="{{ route('apprenants.index') }}" class="btn btn-outline-secondary">Réinitialiser</a>
             </div>
         </form>
     </div>
@@ -43,7 +43,7 @@
                         <th>Photo</th>
                         <th>Matricule</th>
                         <th>Nom complet</th>
-                        <th>Filiere</th>
+                        <th>Filière</th>
                         <th>Email</th>
                         <th>Date d'inscription</th>
                         <th class="text-end">Actions</th>

@@ -33,15 +33,15 @@ class FiliereController extends Controller
         $filiere = Filiere::query()->create($request->validated());
 
         $this->notifyUsers(
-            'Nouvelle filiere',
-            "La filiere {$filiere->nom} a ete creee.",
+            'Nouvelle filière',
+            "La filière {$filiere->nom} a été créée.",
             'success',
             route('filieres.show', $filiere),
         );
 
         return redirect()
             ->route('filieres.index')
-            ->with('success', 'La filiere a ete enregistree avec succes.');
+            ->with('success', 'La filière a été enregistrée avec succès.');
     }
 
     public function show(Filiere $filiere): View
@@ -62,13 +62,13 @@ class FiliereController extends Controller
 
         return redirect()
             ->route('filieres.show', $filiere)
-            ->with('success', 'La filiere a ete mise a jour.');
+            ->with('success', 'La filière a été mise à jour.');
     }
 
     public function destroy(Filiere $filiere): RedirectResponse
     {
         if ($filiere->apprenants()->exists()) {
-            return back()->with('error', 'Impossible de supprimer une filiere contenant des apprenants.');
+            return back()->with('error', 'Impossible de supprimer une filière contenant des apprenants.');
         }
 
         $nom = $filiere->nom;
@@ -76,6 +76,6 @@ class FiliereController extends Controller
 
         return redirect()
             ->route('filieres.index')
-            ->with('success', "La filiere {$nom} a ete supprimee.");
+            ->with('success', "La filière {$nom} a été supprimée.");
     }
 }
