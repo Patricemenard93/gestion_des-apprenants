@@ -6,15 +6,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome', [
-        'isAuthenticated' => Auth::check(),
-    ]);
-})->name('home');
+// Pages publiques
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/formations', [PageController::class, 'formations'])->name('formations');
+Route::get('/a-propos', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
