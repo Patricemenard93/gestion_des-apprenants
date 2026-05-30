@@ -34,11 +34,35 @@ class DashboardController extends Controller
             ->sortBy('periode')
             ->values();
 
+        // Filières with count
+        $filieres = Filiere::query()->withCount('apprenants')->orderBy('nom')->get();
+
+        // Top apprenants by average
+        $topApprenants = $apprenants
+            ->map(function (Apprenant $apprenant) use ($statsService) {
+                $moyenne = $statsService->moyenneGenerale($apprenant);
+                return [
+                    'apprenant' => $apprenant,
+                    'moyenne' => $moyenne,
+                    'decision' => $statsService->decision($apprenant),
+                ];
+            })
+            ->filter(fn ($item) => $item['apprenant']->notes->isNotEmpty())
+            ->sortByDesc('moyenne')
+            ->take(5)
+            ->values();
+
+        // Gender distribution
+        $genderStats = $apprenants->groupBy(fn ($a) => $a->sexe->value)->map->count();
+
+        // Recent notes
+        $recentNotes = Note::query()
+            ->with(['apprenant.filiere'])
+            ->latest()
+            ->take(5)
+            ->get();
+
         return view('dashboard', [
-            'filieresChart' => Filiere::query()
-                ->withCount('apprenants')
-                ->orderBy('nom')
-                ->get(),
             'stats' => [
                 'apprenants' => Apprenant::query()->count(),
                 'filieres' => Filiere::query()->count(),
@@ -46,10 +70,15 @@ class DashboardController extends Controller
                 'moyenne_generale' => $averageOfAverages,
             ],
             'latestApprenants' => $latestApprenants,
+            'topApprenants' => $topApprenants,
+            'recentNotes' => $recentNotes,
+            'filieres' => $filieres,
+            'genderStats' => $genderStats,
+            'admissionStats' => $admissionStats,
             'chartData' => [
                 'apprenantsParFiliere' => [
-                    'labels' => Filiere::query()->withCount('apprenants')->orderBy('nom')->pluck('nom')->all(),
-                    'values' => Filiere::query()->withCount('apprenants')->orderBy('nom')->pluck('apprenants_count')->all(),
+                    'labels' => $filieres->pluck('nom')->all(),
+                    'values' => $filieres->pluck('apprenants_count')->all(),
                 ],
                 'admissions' => [
                     'labels' => $admissionStats->keys()->values()->all(),
@@ -58,6 +87,10 @@ class DashboardController extends Controller
                 'inscriptions' => [
                     'labels' => $inscriptionStats->pluck('periode')->all(),
                     'values' => $inscriptionStats->pluck('total')->all(),
+                ],
+                'gender' => [
+                    'labels' => $genderStats->keys()->values()->all(),
+                    'values' => $genderStats->values()->all(),
                 ],
             ],
         ]);
