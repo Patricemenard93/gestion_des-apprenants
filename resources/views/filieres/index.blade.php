@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Duree</th>
+                        <th>Durée</th>
                         <th>Description</th>
                         <th>Apprenants</th>
                         <th class="text-end">Actions</th>

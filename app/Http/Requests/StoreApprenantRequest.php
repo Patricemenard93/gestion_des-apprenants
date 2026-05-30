@@ -27,4 +27,16 @@ class StoreApprenantRequest extends FormRequest
             'filiere_id' => ['required', 'exists:filieres,id'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'matricule.unique' => 'Ce matricule est déjà attribué à un autre apprenant.',
+            'email.unique' => 'Cette adresse e-mail est déjà utilisée.',
+            'photo.image' => 'Le fichier doit être une image (JPG, PNG ou WebP).',
+            'photo.max' => 'La photo ne doit pas dépasser 2 Mo.',
+            'date_naissance.before' => 'La date de naissance doit être antérieure à aujourd\'hui.',
+            'filiere_id.exists' => 'La filière sélectionnée n\'existe pas.',
+        ];
+    }
 }

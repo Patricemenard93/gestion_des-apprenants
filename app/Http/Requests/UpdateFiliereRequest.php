@@ -21,4 +21,11 @@ class UpdateFiliereRequest extends FormRequest
             'duree' => ['required', 'string', 'max:120'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nom.unique' => 'Une filière avec ce nom existe déjà.',
+        ];
+    }
 }

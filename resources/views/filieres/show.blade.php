@@ -1,4 +1,18 @@
 <x-app-layout>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <a href="{{ route('filieres.index') }}" class="btn btn-outline-secondary">&larr; Retour à la liste</a>
+        @if(auth()->user()->isAdmin())
+            <div class="d-flex gap-2">
+                <a href="{{ route('filieres.edit', $filiere) }}" class="btn btn-outline-primary">Modifier</a>
+                <form method="POST" action="{{ route('filieres.destroy', $filiere) }}" onsubmit="return confirm('Supprimer cette filière ?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
+        @endif
+    </div>
+
     <div class="hero-panel p-4 p-lg-5 mb-4">
         <p class="section-label mb-2">Filière</p>
         <h1 class="h2 mb-2">{{ $filiere->nom }}</h1>

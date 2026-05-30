@@ -63,7 +63,7 @@
                 <div class="col-lg-6">
                     <div class="content-card p-4 chart-card">
                         <p class="section-label mb-1">Inscriptions</p>
-                        <h2 class="h4 mb-3">Evolution mensuelle</h2>
+                        <h2 class="h4 mb-3">Évolution mensuelle</h2>
                         <canvas id="inscriptionsChart"></canvas>
                     </div>
                 </div>

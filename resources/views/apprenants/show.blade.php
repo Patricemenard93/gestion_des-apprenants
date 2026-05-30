@@ -1,4 +1,18 @@
 <x-app-layout>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <a href="{{ route('apprenants.index') }}" class="btn btn-outline-secondary">&larr; Retour à la liste</a>
+        @if(auth()->user()->isAdmin())
+            <div class="d-flex gap-2">
+                <a href="{{ route('apprenants.edit', $apprenant) }}" class="btn btn-outline-primary">Modifier</a>
+                <form method="POST" action="{{ route('apprenants.destroy', $apprenant) }}" onsubmit="return confirm('Supprimer cet apprenant ?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
+        @endif
+    </div>
+
     <div class="hero-panel p-4 p-lg-5 mb-4">
         <div class="d-flex flex-column flex-lg-row gap-4 align-items-lg-center">
             <img src="{{ $apprenant->photo_url }}" alt="" class="avatar-lg">
@@ -16,7 +30,7 @@
                 <h2 class="h4 mb-3">Informations</h2>
                 <div class="d-grid gap-2">
                     <div><strong>Email :</strong> {{ $apprenant->email }}</div>
-                    <div><strong>Telephone :</strong> {{ $apprenant->telephone }}</div>
+                    <div><strong>Téléphone :</strong> {{ $apprenant->telephone }}</div>
                     <div><strong>Sexe :</strong> {{ $apprenant->sexe->label() }}</div>
                     <div><strong>Naissance :</strong> {{ $apprenant->date_naissance->format('d/m/Y') }}</div>
                     <div><strong>Inscription :</strong> {{ $apprenant->date_inscription->format('d/m/Y') }}</div>
@@ -40,7 +54,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="metric-card">
-                        <div class="section-label mb-2">Decision</div>
+                        <div class="section-label mb-2">Décision</div>
                         <div class="metric-value fs-3">{{ $stats['decision'] }}</div>
                     </div>
                 </div>

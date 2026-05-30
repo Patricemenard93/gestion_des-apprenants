@@ -17,7 +17,7 @@
         <form method="GET" class="row g-3">
             <div class="col-md-5">
                 <label class="form-label" for="search">Recherche</label>
-                <input class="form-control" id="search" name="search" type="text" value="{{ $filters['search'] }}" placeholder="Nom, prenom ou matricule">
+                <input class="form-control" id="search" name="search" type="text" value="{{ $filters['search'] }}" placeholder="Nom, prénom ou matricule">
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="filiere">Filière</label>

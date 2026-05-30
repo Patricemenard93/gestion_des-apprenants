@@ -28,6 +28,6 @@ class ApprenantStatsService
 
     public function decision(Apprenant $apprenant): string
     {
-        return $this->moyenneGenerale($apprenant) >= 10 ? 'Admis' : 'Ajourne';
+        return $this->moyenneGenerale($apprenant) >= 10 ? 'Admis' : 'Ajourné';
     }
 }

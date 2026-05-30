@@ -1,4 +1,18 @@
 <x-app-layout>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <a href="{{ route('notes.index') }}" class="btn btn-outline-secondary">&larr; Retour à la liste</a>
+        @if(auth()->user()->isAdmin())
+            <div class="d-flex gap-2">
+                <a href="{{ route('notes.edit', $note) }}" class="btn btn-outline-primary">Modifier</a>
+                <form method="POST" action="{{ route('notes.destroy', $note) }}" onsubmit="return confirm('Supprimer cette note ?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
+        @endif
+    </div>
+
     <div class="hero-panel p-4 p-lg-5 mb-4">
         <p class="section-label mb-2">Détail d'évaluation</p>
         <h1 class="h2 mb-2">{{ $note->module }}</h1>
