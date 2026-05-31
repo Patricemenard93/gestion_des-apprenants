@@ -45,8 +45,9 @@ Développé pour le centre de formation CFTP-L2C (Connecté à votre avenir), ce
 ### Etape 1 — Cloner le projet
 
 ```bash
-git clone <url-du-depot> gestion-des-apprenants
-cd gestion-des-apprenants
+git clone https://github.com/Patricemenard93/gestion_des-apprenants
+
+cd gestion_des-apprenants
 ```
 
 ### Etape 2 — Installer les dépendances PHP
@@ -55,8 +56,6 @@ cd gestion-des-apprenants
 composer install --ignore-platform-req=php
 ```
 
-> L'option `--ignore-platform-req=php` est nécessaire si vous utilisez PHP 8.5+
-> (phpspreadsheet déclare une contrainte PHP < 8.5.0, mais le projet fonctionne correctement).
 
 ### Etape 3 — Installer les dépendances JavaScript
 
@@ -81,16 +80,8 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-| Environnement | Port | Mot de passe root |
-|---------------|------|-------------------|
-| Laragon | 3306 | *(vide)* |
-| XAMPP | 3306 | *(vide)* |
-| MAMP | 8889 | `root` |
-| Homebrew (macOS) | 3306 | *(vide)* |
-
 ### Etape 5 — Créer la base de données
 
-Dans votre client MySQL (phpMyAdmin, TablePlus, ligne de commande…) :
 
 ```sql
 CREATE DATABASE cftp_l2c_gestion CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -108,7 +99,6 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-Cette commande crée toutes les tables et insère les données de démonstration (comptes admin et utilisateur, filières, apprenants, notes).
 
 ### Etape 8 — Créer le lien symbolique pour le stockage
 
@@ -122,28 +112,19 @@ php artisan storage:link
 npm run build
 ```
 
-Pour le développement avec rechargement automatique :
-
-```bash
-npm run dev
-```
-
 ### Etape 10 — Lancer le serveur
 
 ```bash
 php artisan serve
 ```
 
-L'application est accessible à l'adresse : **http://127.0.0.1:8000**
-
----
 
 ## 4. Identifiants de connexion
 
 | Role | Email | Mot de passe |
 |------|-------|--------------|
-| Administrateur | `admin@cftp-l2c.test` | `password` |
-| Utilisateur (lecture seule) | `user@cftp-l2c.test` | `password` |
+| Administrateur | `admin@gmail.com` | `password` |
+| Utilisateur (lecture seule) | `user1@gmail.com` | `password` |
 
 ### Droits par rôle
 
@@ -197,7 +178,3 @@ php artisan view:clear
 
 # Réinitialiser la base de données
 php artisan migrate:fresh --seed
-
-# Lancer les tests
-php artisan test
-```
