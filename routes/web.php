@@ -8,9 +8,9 @@ use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Pages publiques
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/formations', [PageController::class, 'formations'])->name('formations');
 Route::get('/a-propos', [PageController::class, 'about'])->name('about');
@@ -19,8 +19,14 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    // Routes admin (create/store/edit/update/delete) - AVANT les routes {model}
     Route::middleware('role:'.UserRole::Admin->value)->group(function () {
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
         Route::get('/filieres/create', [FiliereController::class, 'create'])->name('filieres.create');
         Route::post('/filieres', [FiliereController::class, 'store'])->name('filieres.store');
         Route::get('/filieres/{filiere}/edit', [FiliereController::class, 'edit'])->name('filieres.edit');
@@ -40,7 +46,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
     });
 
-    // Routes de consultation (index/show) - APRES les routes statiques
     Route::get('/filieres', [FiliereController::class, 'index'])->name('filieres.index');
     Route::get('/filieres/{filiere}', [FiliereController::class, 'show'])->name('filieres.show');
 
@@ -50,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
     Route::get('/notes/{note}', [NoteController::class, 'show'])->name('notes.show');
 
-    // Exports
     Route::prefix('exports')->name('exports.')->group(function () {
         Route::get('/apprenants/excel', [ExportController::class, 'apprenantsExcel'])->name('apprenants.excel');
         Route::get('/apprenants/pdf', [ExportController::class, 'apprenantsPdf'])->name('apprenants.pdf');
@@ -60,7 +64,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/notes/pdf', [ExportController::class, 'notesPdf'])->name('notes.pdf');
     });
 
-    // Profil
+    Route::post('/notifications/mark-all-read', function () {
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
+    })->name('notifications.markAllRead');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

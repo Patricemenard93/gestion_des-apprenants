@@ -1,102 +1,203 @@
-# CFTP-L2C Gestion des Apprenants
+# CFTP-L2C — Gestion des Apprenants
 
-Application web Laravel pour la gestion des filieres, apprenants, notes, statistiques et exports du centre de formation CFTP-L2C.
+> Application web de gestion des filières, apprenants et notes du centre de formation CFTP-L2C.
 
-## Fonctionnalites
+---
 
-- Authentification avec inscription, connexion et deconnexion
-- Gestion des roles `admin` et `user`
-- CRUD complet des filieres
-- CRUD complet des apprenants avec upload photo
-- Gestion des notes avec calcul de moyenne, total de coefficients et decision
-- Recherche par nom, prenom ou matricule
-- Filtrage par filiere et par apprenant
-- Tableau de bord avec graphiques statistiques
-- Notifications systeme en base de donnees
-- Export PDF et Excel des filieres, apprenants et notes
+## 1. Nom du projet
 
-## Stack technique
+**CFTP-L2C — Système de Gestion des Apprenants**
 
-- Laravel 13
-- PHP 8.3
-- MySQL comme base de donnees cible
-- Eloquent ORM
-- Blade
-- Bootstrap 5
-- Maatwebsite Excel
-- DomPDF
+Développé pour le centre de formation CFTP-L2C (Connecté à votre avenir), ce projet permet la gestion complète des filières de formation, des apprenants inscrits et de leurs notes, avec calcul automatique des moyennes et exports de documents.
 
-## Installation
+---
+
+## 2. Technologies utilisées
+
+| Couche | Technologie | Version |
+|
+| Framework PHP | Laravel 13.8 |
+| Langage | PHP | 8.5.2 |
+| Base de données | MySQL | 8.x |
+| ORM | Eloquent (Laravel) | — |
+| Moteur de templates | Blade (Laravel) | — |
+| Authentification | Laravel Breeze | — |
+| CSS / UI | Bootstrap | 5.3 |
+| Graphiques | Chart.js | 4.4.0 |
+| Export PDF | barryvdh/laravel-dompdf
+| Export Excel | maatwebsite/excel
+| Build frontend | Vite
+| Notifications | Laravel Database Notifications
+| Typographies | Inter, Playfair Display (Google Fonts)
+
+---
+
+## 3. Etapes d'installation
+
+### Prérequis
+
+- PHP 8.x
+- Composer
+- Node.js + npm
+- MySQL (Laragon, XAMPP, MAMP ou Homebrew)
+- Git
+
+### Etape 1 — Cloner le projet
 
 ```bash
-composer install
+git clone <url-du-depot> gestion-des-apprenants
+cd gestion-des-apprenants
+```
+
+### Etape 2 — Installer les dépendances PHP
+
+```bash
+composer install --ignore-platform-req=php
+```
+
+> L'option `--ignore-platform-req=php` est nécessaire si vous utilisez PHP 8.5+
+> (phpspreadsheet déclare une contrainte PHP < 8.5.0, mais le projet fonctionne correctement).
+
+### Etape 3 — Installer les dépendances JavaScript
+
+```bash
 npm install
-copy .env.example .env
-create database gestion_apprenants
+```
+
+### Etape 4 — Configurer l'environnement
+
+```bash
+cp .env.example .env
+```
+
+Ouvrez le fichier `.env` et renseignez la connexion à votre base de données :
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cftp_l2c_gestion
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+| Environnement | Port | Mot de passe root |
+|---------------|------|-------------------|
+| Laragon | 3306 | *(vide)* |
+| XAMPP | 3306 | *(vide)* |
+| MAMP | 8889 | `root` |
+| Homebrew (macOS) | 3306 | *(vide)* |
+
+### Etape 5 — Créer la base de données
+
+Dans votre client MySQL (phpMyAdmin, TablePlus, ligne de commande…) :
+
+```sql
+CREATE DATABASE cftp_l2c_gestion CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### Etape 6 — Générer la clé d'application
+
+```bash
 php artisan key:generate
+```
+
+### Etape 7 — Exécuter les migrations et les seeders
+
+```bash
 php artisan migrate --seed
+```
+
+Cette commande crée toutes les tables et insère les données de démonstration (comptes admin et utilisateur, filières, apprenants, notes).
+
+### Etape 8 — Créer le lien symbolique pour le stockage
+
+```bash
 php artisan storage:link
+```
+
+### Etape 9 — Compiler les assets frontend
+
+```bash
 npm run build
+```
+
+Pour le développement avec rechargement automatique :
+
+```bash
+npm run dev
+```
+
+### Etape 10 — Lancer le serveur
+
+```bash
 php artisan serve
 ```
 
-Si `php` n'est pas reconnu dans PowerShell sous Windows, utilisez l'executable PHP fourni par votre stack, par exemple avec Laragon :
+L'application est accessible à l'adresse : **http://127.0.0.1:8000**
 
-```powershell
-& "C:\laragon\bin\php\php-8.3.28-Win32-vs16-x64\php.exe" artisan migrate --seed
-```
+---
 
-## Comptes de demonstration
+## 4. Identifiants de connexion
 
-- Administrateur : `admin@cftp-l2c.test`
-- Utilisateur lecture : `user@cftp-l2c.test`
-- Mot de passe : `password`
+| Role | Email | Mot de passe |
+|------|-------|--------------|
+| Administrateur | `admin@cftp-l2c.test` | `password` |
+| Utilisateur (lecture seule) | `user@cftp-l2c.test` | `password` |
 
-## Base de donnees
+### Droits par rôle
 
-Le projet est livre pour fonctionner avec MySQL.
+| Fonctionnalité | Administrateur | Utilisateur |
+|----------------|:--------------:|:-----------:|
+| Voir le tableau de bord | Oui | Oui |
+| Voir les filières | Oui | Oui |
+| Créer / modifier / supprimer une filière | Oui | Non |
+| Voir les apprenants | Oui | Oui |
+| Créer / modifier / supprimer un apprenant | Oui | Non |
+| Voir les notes | Oui | Oui |
+| Ajouter / modifier / supprimer une note | Oui | Non |
+| Exporter PDF / Excel | Oui | Oui |
+| Gérer les utilisateurs | Oui | Non |
+| Voir les notifications | Oui | Oui |
 
-Configuration par defaut de `.env.example` :
+---
 
-- `DB_CONNECTION=mysql`
-- `DB_HOST=127.0.0.1`
-- `DB_PORT=3306`
-- `DB_DATABASE=gestion_apprenants`
-- `DB_USERNAME=root`
-- `DB_PASSWORD=`
+## Fonctionnalités principales
 
-Valeurs conseillees selon votre serveur local :
+- Tableau de bord avec statistiques en temps réel et graphiques interactifs (Chart.js)
+- CRUD complet : filières, apprenants (avec photo), notes
+- Calcul automatique de la moyenne pondérée et décision (Admis / Ajourné)
+- Recherche par nom, prénom ou matricule ; filtre par filière
+- Export PDF et Excel des filières, apprenants et notes
+- Notifications système en base de données (création, modification, suppression)
+- Authentification sécurisée : limitation à 5 tentatives, blocage 6 minutes, messages génériques anti-énumération
+- Gestion des utilisateurs et des rôles (admin uniquement)
 
-- Laragon : `DB_HOST=127.0.0.1`, `DB_PORT=3306`, `DB_USERNAME=root`, `DB_PASSWORD=`
-- XAMPP : `DB_HOST=127.0.0.1`, `DB_PORT=3306`, `DB_USERNAME=root`, `DB_PASSWORD=`
-- MAMP : `DB_HOST=127.0.0.1`, `DB_PORT=8889`, `DB_USERNAME=root`, `DB_PASSWORD=root`
+---
 
-Une fois la base creee dans phpMyAdmin ou via MySQL, lancez :
+## Structure de la base de données
+
+| Table | Description |
+|-------|-------------|
+| `users` | Comptes utilisateurs avec rôle (`admin` / `user`) |
+| `filieres` | Filières de formation |
+| `apprenants` | Apprenants avec photo, genre, matricule |
+| `notes` | Notes avec matière, coefficient, date |
+| `notifications` | Notifications système (base de données Laravel) |
+
+---
+
+## Commandes utiles
 
 ```bash
-php artisan migrate --seed
+# Vider le cache
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Réinitialiser la base de données
+php artisan migrate:fresh --seed
+
+# Lancer les tests
+php artisan test
 ```
-
-Les migrations couvrent :
-
-- utilisateurs, sessions, cache et jobs Laravel
-- filieres
-- apprenants
-- notes
-- notifications en base de donnees
-
-## Technologies obligatoires
-
-Les technologies demandees sont bien presentes et utilisees dans le projet :
-
-- Laravel : structure complete de l'application, routes, controllers, migrations et artisan
-- Blade : vues `resources/views/*.blade.php`
-- Bootstrap : importe dans `resources/css/app.css` et `resources/js/app.js`, puis utilise dans les vues
-- MySQL : configuration par defaut des fichiers `.env` et validation de migration sur MySQL
-- Eloquent ORM : modeles `App\Models\Apprenant`, `Filiere`, `Note`, `User` et leurs relations
-
-## Verification
-
-- `php artisan migrate:fresh --seed`
-- `php artisan test`
-- `npm run build`

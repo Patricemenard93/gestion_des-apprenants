@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'failed' => 'Ces identifiants ne correspondent pas à nos enregistrements.',
-    'password' => 'Le mot de passe est incorrect.',
-    'throttle' => 'Tentatives de connexion trop nombreuses. Veuillez réessayer dans :seconds secondes.',
+    'failed' => 'Identifiants incorrects.',
+    'password' => 'Identifiants incorrects.',
+    'throttle' => 'Trop de tentatives. Compte temporairement bloqué pendant :minutes minute(s).',
 ];

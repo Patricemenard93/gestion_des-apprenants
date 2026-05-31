@@ -74,6 +74,12 @@ class FiliereController extends Controller
         $nom = $filiere->nom;
         $filiere->delete();
 
+        $this->notifyUsers(
+            'Suppression filière',
+            "La filière {$nom} a été supprimée.",
+            'warning',
+        );
+
         return redirect()
             ->route('filieres.index')
             ->with('success', "La filière {$nom} a été supprimée.");

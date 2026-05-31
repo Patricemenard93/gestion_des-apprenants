@@ -9,20 +9,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="app-shell">
+    <div class="app-layout">
+        {{-- Sidebar --}}
         @include('layouts.navigation')
 
-        <main class="py-4 py-lg-5">
-            <div class="container">
+        {{-- Main content --}}
+        <div class="app-main">
+            {{-- Top bar --}}
+            @include('layouts.topbar')
+
+            <main class="app-content">
                 @include('partials.flash')
                 {{ $slot }}
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
+    {{-- Mobile sidebar overlay --}}
+    <div class="sidebar-overlay" onclick="document.body.classList.remove('sidebar-open')"></div>
 </body>
 </html>

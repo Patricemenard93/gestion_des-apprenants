@@ -99,7 +99,14 @@ class NoteController extends Controller
     public function destroy(Note $note): RedirectResponse
     {
         $apprenantName = $note->apprenant->nom_complet;
+        $module = $note->module;
         $note->delete();
+
+        $this->notifyUsers(
+            'Suppression note',
+            "La note de {$apprenantName} ({$module}) a été supprimée.",
+            'warning',
+        );
 
         return redirect()
             ->route('notes.index')

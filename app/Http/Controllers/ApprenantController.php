@@ -97,6 +97,13 @@ class ApprenantController extends Controller
 
         $apprenant->update($data);
 
+        $this->notifyUsers(
+            'Modification apprenant',
+            "Les informations de {$apprenant->nom_complet} ont été mises à jour.",
+            'info',
+            route('apprenants.show', $apprenant),
+        );
+
         return redirect()
             ->route('apprenants.show', $apprenant)
             ->with('success', "Les informations de l'apprenant ont été mises à jour.");

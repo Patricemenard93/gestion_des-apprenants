@@ -34,10 +34,8 @@ class DashboardController extends Controller
             ->sortBy('periode')
             ->values();
 
-        // Filières with count
         $filieres = Filiere::query()->withCount('apprenants')->orderBy('nom')->get();
 
-        // Top apprenants by average
         $topApprenants = $apprenants
             ->map(function (Apprenant $apprenant) use ($statsService) {
                 $moyenne = $statsService->moyenneGenerale($apprenant);
@@ -52,10 +50,8 @@ class DashboardController extends Controller
             ->take(5)
             ->values();
 
-        // Gender distribution
         $genderStats = $apprenants->groupBy(fn ($a) => $a->sexe->value)->map->count();
 
-        // Recent notes
         $recentNotes = Note::query()
             ->with(['apprenant.filiere'])
             ->latest()

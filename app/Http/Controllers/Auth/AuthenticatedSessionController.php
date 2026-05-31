@@ -7,21 +7,28 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.login');
+        $attemptsLeft = session('login_attempts_left');
+        $lockedOut    = false;
+        $lockedSeconds = 0;
+
+        // Check if currently locked out (using IP-based key estimate)
+        $throttleKey = Str::transliterate(Str::lower($request->input('email', '')) . '|' . $request->ip());
+        if (RateLimiter::tooManyAttempts($throttleKey, LoginRequest::MAX_ATTEMPTS)) {
+            $lockedOut = true;
+            $lockedSeconds = RateLimiter::availableIn($throttleKey);
+        }
+
+        return view('auth.login', compact('attemptsLeft', 'lockedOut', 'lockedSeconds'));
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -31,9 +38,6 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
